@@ -1,0 +1,100 @@
+body, html{
+    background-color: lightgray;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+}
+
+.header{
+    background-color: darkgray;
+    text-align: center;
+    padding: 50px 0;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.container{
+    flex: 1 1 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: azure;
+}
+
+.calculator-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: aqua;
+    width: 500px;
+    height: 500px;
+
+}
+
+.display-container{
+    height: 30%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.display{
+    font-size:xx-large;
+}
+
+.buttons-container{
+    height: 70%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.row1, .row2, .row3, .row4, .row5{
+    display: flex;
+    height: 20%;
+    width: 100%;
+}
+
+.row1 .ce, .row1 .c, .row1 .backspace, .row1 .divide{
+    flex: auto;
+    align-self: center;
+    text-align: center;
+}
+
+.row2 .seven, .row2 .eight, .row2 .nine, .row2 .multiply{
+    flex: auto;
+    align-self: center;
+    text-align: center;
+}
+
+.row3 .four, .row3 .five, .row3 .six, .row3 .minus{
+    flex: auto;
+    align-self: center;
+    text-align: center;
+}
+
+.row4 .one, .row4 .two, .row4 .three, .row4 .addition{
+    flex: auto;
+    align-self: center;
+    text-align: center;
+}
+
+.row5 .zero, .row5 .dot, .row5 .equal{
+    flex: auto;
+    align-self: center;
+    text-align: center;
+}
+
+.row5 .equal{
+    flex: 2 1 auto;
+}
+
+.footer{
+    text-align: center;
+    padding: 20px 0;
+}
