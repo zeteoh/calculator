@@ -59,6 +59,9 @@ function multiply(a, b, ...args) {
 }
 
 function divide(a, b, ...args) {
+  if(b == 0){
+    return "ERROR"
+  }
   let output = a / b;
   if (args) {
     output = args.reduce((acc, item) => acc / item, output);
@@ -88,6 +91,10 @@ function operate() {
         output = multiply(inputArr[highIndex - 1], inputArr[highIndex + 1]);
       } else if (inputArr[highIndex] === "/") {
         output = divide(inputArr[highIndex - 1], inputArr[highIndex + 1]);
+        if(output === "ERROR"){
+          inputArr = []
+          inputArr.push(output)
+        }
       } else {
         output = mod(inputArr[highIndex - 1], inputArr[highIndex + 1]);
       }
@@ -137,7 +144,7 @@ function populateDisplay() {
 
 function inputNumberAssign(number) {
   //check if current previous value is an output
-  if (typeof input === "number" && isNaN(parseFloat(currNumber))) {
+  if ((typeof input === "number" || input === "ERROR") && isNaN(parseFloat(currNumber))) {
     //clear it if it is
     input = "";
   }
@@ -151,7 +158,11 @@ function inputNumberClear() {
 }
 
 function validation() {
-  if (currNumber === "") {
+  const zeroValiHigh = highPrecedenceOperators.map(op => op.includes(inputArr[(inputArr.length-1)]))
+  const zeroValiLow = lowPrecedenceOperators.map(op => op.includes(inputArr[(inputArr.length-1)]))
+  let zeroVali = zeroValiHigh || zeroValiLow
+  zeroVali = zeroVali.find(op => op===true)
+  if (currNumber === "" && !zeroVali) {
     return false;
   }
   return true;
