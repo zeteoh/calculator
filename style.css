@@ -82,9 +82,13 @@ body, html{
 
 .display{
     font-size:xx-large;
-    width: 97%;
+    width: 93%;
+    padding: 0 2%;
     height: 40%;
     text-align: right;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .buttons-container{

@@ -4,6 +4,11 @@ let currNumber = ``;
 let dotOperator = true;
 let highPrecedenceOperators = ["x", "/", "%"];
 let lowPrecedenceOperators = ["+", "-"];
+let historyResult = {
+    input: "",
+    equal: "=",
+    result: ""
+}
 
 const zero = document.querySelector(".zero");
 const one = document.querySelector(".one");
@@ -20,6 +25,9 @@ const backspace = document.querySelector(".backspace");
 const divideOperation = document.querySelector(".divide");
 const minus = document.querySelector(".minus");
 const modulo = document.querySelector(".modulo");
+const getOperators = document.querySelector(".operators");
+const getPrevEqual = document.querySelector(".prev-equal");
+const getPrevResult = document.querySelector(".prev-result")
 const addition = document.querySelector(".addition");
 const multiplyOperation = document.querySelector(".multiply");
 const dot = document.querySelector(".dot");
@@ -62,6 +70,7 @@ function operate(){
     let output = 0
     while(inputArr.length > 0){
         let highIndex = inputArr.findIndex(element => highPrecedenceOperators.includes(element));
+        console.log(highIndex)
         let lowIndex = inputArr.findIndex(element => lowPrecedenceOperators.includes(element));
         if(highIndex !== -1){
             if(inputArr[highIndex] === "x"){
@@ -74,8 +83,8 @@ function operate(){
             //replace the value before operator to output
             inputArr[(highIndex-1)] = output
             //remove operator and value after operator
-            inputArr.pop(highIndex)
-            inputArr.pop(highIndex)
+            inputArr.splice(highIndex, 1)
+            inputArr.splice(highIndex, 1)
         }else if(lowIndex !== -1){
             if(inputArr[lowIndex] === "+"){
                 output = inputArr[(lowIndex-1)] + inputArr[(lowIndex+1)]
@@ -85,14 +94,25 @@ function operate(){
             //replace the value before operator to output
             inputArr[(highIndex-1)] = output
             //remove operator and value after operator
-            inputArr.pop(highIndex)
-            inputArr.pop(highIndex)
+            inputArr.splice(lowIndex, 1)
+            inputArr.splice(lowIndex, 1)
         }else{
+            historyResult.result = inputArr[0];
             input = inputArr[0];
+            populateHistory();
             populateDisplay();
             inputArr.pop();
         }
     }
+}
+
+function populateHistory(){
+    // const getOperators = document.querySelector(".operators");
+    // const getPrevEqual = document.querySelector(".prev-equal");
+    // const getPrevResult = document.querySelector(".prev-result")
+    getOperators.textContent = historyResult.input;
+    getPrevEqual.textContent = historyResult.equal;
+    getPrevResult.textContent = historyResult.result
 }
 
 function populateDisplay(){
@@ -253,6 +273,7 @@ function registerInput() {
     if(inputArr.length > 0){
         inputArr.push(parseFloat(currNumber))
         dotOperator = true
+        historyResult.input = input;
         inputNumberClear();
         operate();
     }
