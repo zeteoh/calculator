@@ -9,15 +9,6 @@ body, html{
     color: white;
 }
 
-.header{
-    background-color: darkgray;
-    text-align: center;
-    padding: 50px 0;
-    font-size: 50px;
-    font-weight: bold;
-    color: black;
-}
-
 .container{
     flex: 1 1 0;
     display: flex;
