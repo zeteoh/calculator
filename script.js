@@ -92,7 +92,7 @@ function operate(){
                 output = inputArr[(lowIndex-1)] - inputArr[(lowIndex+1)]
             }
             //replace the value before operator to output
-            inputArr[(highIndex-1)] = output
+            inputArr[(lowIndex-1)] = output
             //remove operator and value after operator
             inputArr.splice(lowIndex, 1)
             inputArr.splice(lowIndex, 1)
