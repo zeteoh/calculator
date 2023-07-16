@@ -138,6 +138,7 @@ body, html{
     transform: scale(1.1);
 }
 
+
 .c:hover, .backspace:hover{
     background-color: #800000;
 }
@@ -155,6 +156,24 @@ body, html{
 
 .equal:hover{
     background-color: #0c7a0c;
+}
+
+@media (hover: none) {
+    /* Override hover states for touch devices */
+    .c:hover, .backspace:hover, .dot:hover, 
+    .multiply:hover, .minus:hover, .addition:hover, .divide:hover, .modulo:hover,
+    .equal:hover {
+        background-color: #464646;
+        transform: none;
+    }
+  }
+@media (hover: none){
+    .seven:hover, .eight:hover, .nine:hover, .four:hover, .five:hover, .six:hover,
+    .one:hover, .two:hover, .three:hover, .zero:hover{
+        background-color: #666666;
+        transform: none;
+    }
+
 }
 
 .zero, .dot, .equal{
