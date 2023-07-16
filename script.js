@@ -114,6 +114,12 @@ function inputNumberClear(){
     currNumber = ""
 }
 
+function validation(){
+    if(currNumber === ''){
+        return false
+    }
+    return true
+}
 
 function registerInput() {
   zero.addEventListener("click", () => {
@@ -179,52 +185,62 @@ function registerInput() {
   });
 
   divideOperation.addEventListener("click", () => {
-    input += "÷"
-    inputArr.push(parseFloat(currNumber))
-    inputArr.push("/")
-    dotOperator = true
-    currNumber = ""
-    populateDisplay();
+    if(validation()){
+        input += "÷"
+        inputArr.push(parseFloat(currNumber))
+        inputArr.push("/")
+        dotOperator = true
+        currNumber = ""
+        populateDisplay();
+    }
   });
 
   minus.addEventListener("click", () => {
-    input += "-"
-    inputArr.push(parseFloat(currNumber))
-    inputArr.push("-")
-    dotOperator = true
-    currNumber = ""
-    populateDisplay();
+    if(validation()){
+        input += "-"
+        inputArr.push(parseFloat(currNumber))
+        inputArr.push("-")
+        dotOperator = true
+        currNumber = ""
+        populateDisplay();
+    }
   });
 
   addition.addEventListener("click", () => {
-    input += "+"
-    inputArr.push(parseFloat(currNumber))
-    inputArr.push("+")
-    dotOperator = true
-    currNumber = ""
-    populateDisplay();
+    if(validation()){
+        input += "+"
+        inputArr.push(parseFloat(currNumber))
+        inputArr.push("+")
+        dotOperator = true
+        currNumber = ""
+        populateDisplay();
+    }
   });
 
   multiplyOperation.addEventListener("click", () => {
-    input += "×"
-    inputArr.push(parseFloat(currNumber))
-    inputArr.push("x")
-    dotOperator = true
-    currNumber = ""
-    populateDisplay();
+    if(validation()){
+        input += "×"
+        inputArr.push(parseFloat(currNumber))
+        inputArr.push("x")
+        dotOperator = true
+        currNumber = ""
+        populateDisplay();
+    }
   })
 
   modulo.addEventListener("click", () => {
-    input += "%"
-    inputArr.push(parseFloat(currNumber))
-    inputArr.push("%")
-    dotOperator = true
-    currNumber = ""
-    populateDisplay();
+    if(validation()){
+        input += "%"
+        inputArr.push(parseFloat(currNumber))
+        inputArr.push("%")
+        dotOperator = true
+        currNumber = ""
+        populateDisplay();
+    }
   })
 
   dot.addEventListener("click", () => {
-    if(dotOperator){
+    if(dotOperator && validation()){
         inputNumberAssign('.')
         dotOperator = false
     }
@@ -234,10 +250,12 @@ function registerInput() {
   equal.addEventListener("click", () => {
     //check if input is valid
     //run operation
-    inputArr.push(parseFloat(currNumber))
-    dotOperator = true
-    inputNumberClear();
-    operate();
+    if(inputArr.length > 0){
+        inputArr.push(parseFloat(currNumber))
+        dotOperator = true
+        inputNumberClear();
+        operate();
+    }
   });
 }
 
