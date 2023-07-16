@@ -2,6 +2,8 @@ let input = ``;
 let inputArr = [];
 let currNumber = ``;
 let dotOperator = true;
+let highPrecedenceOperators = ["x", "/", "%"];
+let lowPrecedenceOperators = ["+", "-"];
 
 const zero = document.querySelector(".zero");
 const one = document.querySelector(".one");
@@ -17,6 +19,7 @@ const c = document.querySelector(".c");
 const backspace = document.querySelector(".backspace");
 const divideOperation = document.querySelector(".divide");
 const minus = document.querySelector(".minus");
+const modulo = document.querySelector(".modulo");
 const addition = document.querySelector(".addition");
 const multiplyOperation = document.querySelector(".multiply");
 const dot = document.querySelector(".dot");
@@ -55,9 +58,41 @@ function divide(a, b, ...args) {
   return output;
 }
 
-function opearte(){
-    //split the input by operators
-    let arr = input.split("")
+function operate(){
+    let output = 0
+    while(inputArr.length > 0){
+        let highIndex = inputArr.findIndex(element => highPrecedenceOperators.includes(element));
+        let lowIndex = inputArr.findIndex(element => lowPrecedenceOperators.includes(element));
+        if(highIndex !== -1){
+            if(inputArr[highIndex] === "x"){
+                output = inputArr[(highIndex-1)] * inputArr[(highIndex+1)]
+            }else if (inputArr[highIndex] === "/"){
+                output = inputArr[(highIndex-1)] / inputArr[(highIndex+1)]
+            }else{
+                output = inputArr[(highIndex-1)] % inputArr[(highIndex+1)]
+            }
+            //replace the value before operator to output
+            inputArr[(highIndex-1)] = output
+            //remove operator and value after operator
+            inputArr.pop(highIndex)
+            inputArr.pop(highIndex)
+        }else if(lowIndex !== -1){
+            if(inputArr[lowIndex] === "+"){
+                output = inputArr[(lowIndex-1)] + inputArr[(lowIndex+1)]
+            }else{
+                output = inputArr[(lowIndex-1)] - inputArr[(lowIndex+1)]
+            }
+            //replace the value before operator to output
+            inputArr[(highIndex-1)] = output
+            //remove operator and value after operator
+            inputArr.pop(highIndex)
+            inputArr.pop(highIndex)
+        }else{
+            input = inputArr[0];
+            populateDisplay();
+            inputArr.pop();
+        }
+    }
 }
 
 function populateDisplay(){
@@ -65,13 +100,18 @@ function populateDisplay(){
 }
 
 function inputNumberAssign(number){
+    //check if current previous value is an output
+    if(typeof input === 'number' && isNaN(parseFloat(currNumber))){
+        //clear it if it is
+        input = ""
+    }
     input += number
     currNumber += number
 }
 
 function inputNumberClear(){
-    input += ""
-    currNumber += ""
+    input = ""
+    currNumber = ""
 }
 
 
@@ -174,6 +214,15 @@ function registerInput() {
     populateDisplay();
   })
 
+  modulo.addEventListener("click", () => {
+    input += "%"
+    inputArr.push(parseFloat(currNumber))
+    inputArr.push("%")
+    dotOperator = true
+    currNumber = ""
+    populateDisplay();
+  })
+
   dot.addEventListener("click", () => {
     if(dotOperator){
         inputNumberAssign('.')
@@ -183,15 +232,13 @@ function registerInput() {
   });
 
   equal.addEventListener("click", () => {
-    //run operation
     //check if input is valid
+    //run operation
+    inputArr.push(parseFloat(currNumber))
+    dotOperator = true
+    inputNumberClear();
+    operate();
   });
-}
-
-function operate(a, b, ...args) {
-  //populate the display when user clicks
-  //call any of the operations
-  //update display
 }
 
 registerInput();
