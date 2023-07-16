@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
     <title>Calculator</title>
 </head>
 <body>
@@ -15,34 +15,38 @@
         <div class="calculator-container">
             <div class="display-container">
                 <div class="prev-calculation-display">
-                    1 + 2 = 2
+                    <div class="operators">
+                        1 + 2
+                    </div>
+                    <div class="prev-equal">=</div>
+                    <div class="prev-result">2</div>
                 </div>
-                <div class="display">213</div>
+                <div class="display"></div>
             </div>
             <div class="buttons-container">
                 <div class="row1">
-                    <div class="ce">ce</div>
                     <div class="c">c</div>
-                    <div class="backspace">b</div>
-                    <div class="divide">/</div>
+                    <div class="backspace">&#60</div>
+                    <div class="modulo">%</div>
+                    <div class="divide">&divide</div>
                 </div>
                 <div class="row2">
                     <div class="seven">7</div>
                     <div class="eight">8</div>
                     <div class="nine">9</div>
-                    <div class="multiply">x</div>
+                    <div class="multiply">&times</div>
                 </div>
                 <div class="row3">
                     <div class="four">4</div>
                     <div class="five">5</div>
                     <div class="six">6</div>
-                    <div class="minus">-</div>
+                    <div class="minus">&#8722</div>
                 </div>
                 <div class="row4">
                     <div class="one">1</div>
                     <div class="two">2</div>
                     <div class="three">3</div>
-                    <div class="addition">+</div>
+                    <div class="addition">&#43</div>
                 </div>
                 <div class="row5">
                     <div class="zero">0</div>

@@ -6,6 +6,7 @@ body, html{
     flex-direction: column;
     justify-content: space-between;
     min-height: 100vh;
+    color: white;
 }
 
 .header{
@@ -14,6 +15,7 @@ body, html{
     padding: 50px 0;
     font-size: 50px;
     font-weight: bold;
+    color: black;
 }
 
 .container{
@@ -21,7 +23,7 @@ body, html{
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: azure;
+    padding: 15px;
 }
 
 .calculator-container{
@@ -29,26 +31,64 @@ body, html{
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    background-color: aqua;
-    width: 500px;
-    height: 500px;
-
+    width: 350px;
+    height: 480px;
+    padding: 2%;
+    /* From https://css.glass */
+    background-color: #1e1e1e;
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .display-container{
-    height: 30%;
+    height: 25%;
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    /* From https://css.glass */
+    border-radius: 16px;
+    box-shadow: inset 4px 4px 4px 2px rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    overflow: hidden; /* Add this line */
+    background-color: #464646;
+    margin-bottom: 5%;
+}
+
+.prev-calculation-display{
+    display: flex;
+    height: 60%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.operators, .prev-equal, .prev-result{
+    flex: 1 1 0;
+}
+
+.operators{
+    padding-left: 20px;
+}
+.prev-equal, .prev-result{
+    text-align: right;
+}
+
+.prev-result{
+    padding-right: 20px;
 }
 
 .display{
     font-size:xx-large;
+    width: 97%;
+    height: 40%;
+    text-align: right;
 }
 
 .buttons-container{
-    height: 70%;
+    height: 75%;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -58,43 +98,76 @@ body, html{
     display: flex;
     height: 20%;
     width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 2%;
 }
 
-.row1 .ce, .row1 .c, .row1 .backspace, .row1 .divide{
-    flex: auto;
-    align-self: center;
-    text-align: center;
+.modulo, .c, .backspace, .divide, 
+.seven, .eight, .nine, .multiply, 
+.four, .five, .six, .minus, 
+.one, .two, .three, .addition, 
+.zero, .dot, .equal{
+    max-width: 30%;
+    flex: 1 1 0;
+    display: flex;
+    height: 80%;
+    justify-content: center;
+    align-items: center;
+    background-color: #666666;
+    border-radius: 8px;
+    font-size: 30px;
+    font-weight: bold;
+    box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    overflow: hidden; /* Add this line */
+    transition: all .15s ease-in-out;
+
 }
 
-.row2 .seven, .row2 .eight, .row2 .nine, .row2 .multiply{
-    flex: auto;
-    align-self: center;
-    text-align: center;
+.modulo:hover, .c:hover, .backspace:hover, .divide:hover, 
+.seven:hover, .eight:hover, .nine:hover, .multiply:hover, 
+.four:hover, .five:hover, .six:hover, .minus:hover, 
+.one:hover, .two:hover, .three:hover, .addition:hover, 
+.zero:hover, .dot:hover, .equal:hover{
+    transform: scale(1.1);
 }
 
-.row3 .four, .row3 .five, .row3 .six, .row3 .minus{
-    flex: auto;
-    align-self: center;
-    text-align: center;
+.c:hover, .backspace:hover{
+    background-color: #800000;
 }
 
-.row4 .one, .row4 .two, .row4 .three, .row4 .addition{
-    flex: auto;
-    align-self: center;
-    text-align: center;
+.seven:hover, .eight:hover, .nine:hover, 
+.four:hover, .five:hover, .six:hover,
+.one:hover, .two:hover, .three:hover,
+.zero:hover, .dot:hover{
+    background-color: #8f8c8c;;
 }
 
-.row5 .zero, .row5 .dot, .row5 .equal{
-    flex: auto;
-    align-self: center;
-    text-align: center;
+.multiply:hover, .minus:hover, .addition:hover, .divide:hover, .modulo:hover{
+    background-color: #663399;
+}
+
+.equal:hover{
+    background-color: #0c7a0c;
+}
+
+.zero, .dot, .equal{
+    max-width: 50%;
+}
+
+.modulo, .c, .backspace, .divide, .multiply, .minus, .addition, .dot, .equal{
+    background-color: #464646;
 }
 
 .row5 .equal{
-    flex: 2 1 auto;
+    flex: 3 1 auto;
 }
 
 .footer{
     text-align: center;
     padding: 20px 0;
+    font-weight: bold;
+    color: black;
 }
