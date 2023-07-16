@@ -97,8 +97,8 @@ function operate(){
             inputArr.splice(lowIndex, 1)
             inputArr.splice(lowIndex, 1)
         }else{
-            historyResult.result = inputArr[0];
-            input = inputArr[0];
+            historyResult.result = inputArr[0].toFixed(2);
+            input = inputArr[0].toFixed(2);
             populateHistory();
             populateDisplay();
             inputArr.pop();
