@@ -152,6 +152,17 @@ function inputNumberAssign(number) {
   currNumber += number;
 }
 
+function inputOperatorAssign(operator, operatorValue){
+    if (validation()) {
+    input += operator;
+    inputArr.push(parseFloat(currNumber));
+    inputArr.push(operatorValue);
+    dotOperator = true;
+    currNumber = "";
+    populateDisplay();
+  }
+}
+
 function inputNumberClear() {
   input = "";
   currNumber = "";
@@ -233,58 +244,23 @@ function registerInput() {
   });
 
   divideOperation.addEventListener("click", () => {
-    if (validation()) {
-      input += "÷";
-      inputArr.push(parseFloat(currNumber));
-      inputArr.push("/");
-      dotOperator = true;
-      currNumber = "";
-      populateDisplay();
-    }
+    inputOperatorAssign("÷","/")
   });
 
   minus.addEventListener("click", () => {
-    if (validation()) {
-      input += "-";
-      inputArr.push(parseFloat(currNumber));
-      inputArr.push("-");
-      dotOperator = true;
-      currNumber = "";
-      populateDisplay();
-    }
+    inputOperatorAssign("-","-")
   });
 
   addition.addEventListener("click", () => {
-    if (validation()) {
-      input += "+";
-      inputArr.push(parseFloat(currNumber));
-      inputArr.push("+");
-      dotOperator = true;
-      currNumber = "";
-      populateDisplay();
-    }
+    inputOperatorAssign("+","+")
   });
 
   multiplyOperation.addEventListener("click", () => {
-    if (validation()) {
-      input += "×";
-      inputArr.push(parseFloat(currNumber));
-      inputArr.push("x");
-      dotOperator = true;
-      currNumber = "";
-      populateDisplay();
-    }
+    inputOperatorAssign("×","x")
   });
 
   modulo.addEventListener("click", () => {
-    if (validation()) {
-      input += "%";
-      inputArr.push(parseFloat(currNumber));
-      inputArr.push("%");
-      dotOperator = true;
-      currNumber = "";
-      populateDisplay();
-    }
+    inputOperatorAssign("%","%")
   });
 
   dot.addEventListener("click", () => {
